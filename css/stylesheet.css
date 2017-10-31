@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", Verdana, sans-serif;
+}
+
+.grid {
+  max-width: 90%;
+  height: 2000px;
+}
+
+.card {
+  margin-left: 1%;
+  margin-top: 1%;
+  float: left;
+  transform-style: preserve-3d;
+  perspective: 300px;
+  width: 300px;
+  height: 400px;
+}
+
+.front {
+  backface-visibility: hidden;
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: all 0.5s ease-out;
+  z-index: 1;
+}
+
+.back {
+  border: 1pt black solid;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  position: relative;
+  transform: rotateY(-180deg);
+  z-index: 0;
+}
+
+.grid-sizer,
+.grid-item {
+  width: 300px;
+}
+
+.grid-item {
+  border-radius: 5px;
+  background-size: 100%;
+  height: 400px;
+  perspective: 200px;
+  transform-style: preserve-3d;
+}
+
+p {
+  margin: 5%;
+}
+
+.quote {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.name {
+  font-family: "Roboto Slab", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  /*text-align: right;*/
+}
