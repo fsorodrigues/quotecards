@@ -16,9 +16,9 @@ body {
   margin-top: 1%;
   float: left;
   transform-style: preserve-3d;
-  perspective: 300px;
-  width: 300px;
-  height: 400px;
+  perspective: 200px;
+  width: 200px;
+  height: 299px;
 }
 
 .front {
@@ -57,13 +57,13 @@ p {
 }
 
 .quote {
-  font-size: 1.3rem;
+  font-size: 0.9rem;
   font-weight: 300;
 }
 
 .name {
   font-family: "Roboto Slab", serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 700;
   /*text-align: right;*/
 }
