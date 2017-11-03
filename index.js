@@ -4,25 +4,14 @@ var margin = { top: 100,
                left: 100,
              };
 
-var nestedData = [];
-
 var canvas = d3.select("#grid");
 
-// var columns = 6;
-//
-// var width = document.getElementById("grid").clientWidth;
-// var height = document.getElementById("grid").clientHeight;
-//
-// console.log(width);
-// console.log(height);
-// console.log(columns);
-//
-// var column = width / columns;
-// var cardWidth = column * 0.95;
-// var offset = column * 0.05;
+var length;
 
-//import the data from the .csv file
-d3.csv('./quotes.csv', function(dataIn){
+queue()
+  .defer(d3.csv, "./quotes.csv") // import the data from the .csv file
+
+  .await(function(err, dataIn) { // executing appends and functions after data loads
 
     var sizer = canvas.append("div")
                         .attr("class", "grid-sizer");
@@ -31,7 +20,8 @@ d3.csv('./quotes.csv', function(dataIn){
                         .data(dataIn)
                         .enter()
                         .append("div")
-                          .attr("class", "card");
+                          .attr("class", "card")
+                          .attr("id", function(d,i) { return "card-" + (i + 1) });
 
     var front = cards.append("div")
                       .attr("class", "grid-item front")
@@ -49,12 +39,33 @@ d3.csv('./quotes.csv', function(dataIn){
                       .html(function(d,i){ return d.name + " " + d.surname })
                       .attr("class", "name");
 
-});
+        length = dataIn.length;
 
-$('#grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer'
-});
+        console.log(length);
 
-$(function(){ $(".card").flip(); })
+        $(function(){ $(".card").flip(); });
+
+        setInterval(function() {
+
+          var randomizer = Math.ceil(Math.random() * length);
+
+          var select = "#card-" + randomizer;
+
+          $(function(){
+
+              $(select).flip({
+                  trigger: "manual"
+              });
+
+              setTimeout(function(){
+                  $(select).flip(true);
+              },0);
+
+              setTimeout(function(){
+                  $(select).flip(false);
+              }, 2000);
+
+          });
+
+        }, 4000);
+  });
